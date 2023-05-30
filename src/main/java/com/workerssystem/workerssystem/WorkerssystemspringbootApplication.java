@@ -4,10 +4,9 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class WorkersSystemApplication {
+public class WorkerssystemspringbootApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(WorkersSystemApplication.class, args);
-	}
-
+    public static void main(String[] args) {
+        SpringApplication.run(WorkerssystemspringbootApplication.class, args);
+    }
 }
