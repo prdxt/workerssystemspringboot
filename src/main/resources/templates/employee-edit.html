@@ -4,22 +4,17 @@
     <title>Edit Employee</title>
 </head>
 <body>
-<h1>Edit Employee</h1>
-<form th:object="${employee}" th:action="@{/employees/edit}" method="post">
-    <input type="hidden" th:field="*{id}"/>
-    <label>First Name:
-        <input type="text" th:field="*{firstName}"/>
-    </label>
-    <label>Last Name:
-        <input type="text" th:field="*{lastName}"/>
-    </label>
-    <label>Position:
-        <input type="text" th:field="*{position}"/>
-    </label>
-    <label>Salary:
-        <input type="number" th:field="*{salary}"/>
-    </label>
-    <input type="submit" value="Update"/>
+<form action="#" th:action="@{/edit}" th:object="${employee}" method="post">
+    <input type="hidden" th:field="*{id}">
+    <label for="firstName">First Name:</label><br>
+    <input type="text" id="firstName" th:field="*{firstName}" readonly><br>
+    <label for="lastName">Last Name:</label><br>
+    <input type="text" id="lastName" th:field="*{lastName}" readonly><br>
+    <label for="position">Position:</label><br>
+    <input type="text" id="position" th:field="*{position}"><br>
+    <label for="salary">Salary:</label><br>
+    <input type="number" id="salary" th:field="*{salary}"><br>
+    <input type="submit" value="Submit">
 </form>
 </body>
 </html>
