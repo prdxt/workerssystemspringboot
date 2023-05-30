@@ -26,9 +26,8 @@ public class EmployeeController {
     }
 
     @GetMapping("/add")
-    public String addEmployeeForm(Model model) {
-        model.addAttribute("employee", new Employee());
-        return "employee-add";
+    public String addEmployeeForm(Employee employee) {
+        return "add-employee";
     }
 
     @PostMapping("/add")
@@ -41,8 +40,9 @@ public class EmployeeController {
     public String editEmployeeForm(@PathVariable("id") int id, Model model) {
         Employee employee = employeeService.getEmployeeById(id);
         model.addAttribute("employee", employee);
-        return "employee-edit";
+        return "edit-employee";
     }
+
 
     @PostMapping("/edit")
     public String editEmployee(Employee employee) {
