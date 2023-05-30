@@ -1,38 +1,42 @@
 package com.workerssystem.workerssystem;
 
-import com.workerssystem.workerssystem.Employee;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class EmployeeService {
 
-    private final List<Employee> employees = new ArrayList<>();
+    private List<Employee> employees = new ArrayList<>();
 
-    public List<Employee> getAllEmployees() {
-        return new ArrayList<>(employees);
-    }
-
-    public Employee getEmployeeById(Integer id) {
-        Optional<Employee> employee = employees.stream().filter(e -> e.getId().equals(id)).findFirst();
-        return employee.orElse(null);
+    public List<Employee> getEmployees() {
+        return employees;
     }
 
     public void addEmployee(Employee employee) {
         employees.add(employee);
     }
 
-    public void updateEmployee(Employee employee) {
-        int index = employees.indexOf(getEmployeeById(employee.getId()));
-        if (index != -1) {
-            employees.set(index, employee);
-        }
+    public Employee getEmployeeById(int id) {
+        return employees.stream()
+                .filter(employee -> employee.getId() == id)
+                .findFirst()
+                .orElse(null);
     }
 
-    public void deleteEmployee(Integer id) {
-        employees.removeIf(e -> e.getId().equals(id));
+    public void updateEmployee(Employee employee) {
+        employees.stream()
+                .filter(emp -> emp.getId() == employee.getId())
+                .forEach(emp -> {
+                    emp.setFirstName(employee.getFirstName());
+                    emp.setLastName(employee.getLastName());
+                    emp.setPosition(employee.getPosition());
+                    emp.setSalary(employee.getSalary());
+                });
+    }
+
+    public void deleteEmployee(int id) {
+        employees.removeIf(employee -> employee.getId() == id);
     }
 }

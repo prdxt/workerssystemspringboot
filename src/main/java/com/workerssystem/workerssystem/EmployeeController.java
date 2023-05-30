@@ -1,7 +1,5 @@
-package com.workerssystem.workerssystem.controller;
+package com.workerssystem.workerssystem;
 
-import com.workerssystem.workerssystem.Employee;
-import com.workerssystem.workerssystem.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,39 +19,39 @@ public class EmployeeController {
     }
 
     @GetMapping
-    public String list(Model model) {
-        List<Employee> employees = employeeService.getAllEmployees();
+    public String getEmployees(Model model) {
+        List<Employee> employees = employeeService.getEmployees();
         model.addAttribute("employees", employees);
-        return "employee-list";
+        return "employees";
     }
 
     @GetMapping("/add")
-    public String addForm(Model model) {
+    public String addEmployeeForm(Model model) {
         model.addAttribute("employee", new Employee());
         return "employee-add";
     }
 
     @PostMapping("/add")
-    public String add(Employee employee) {
+    public String addEmployee(Employee employee) {
         employeeService.addEmployee(employee);
         return "redirect:/employees";
     }
 
     @GetMapping("/edit/{id}")
-    public String editForm(@PathVariable("id") Integer id, Model model) {
+    public String editEmployeeForm(@PathVariable("id") int id, Model model) {
         Employee employee = employeeService.getEmployeeById(id);
         model.addAttribute("employee", employee);
         return "employee-edit";
     }
 
     @PostMapping("/edit")
-    public String edit(Employee employee) {
+    public String editEmployee(Employee employee) {
         employeeService.updateEmployee(employee);
         return "redirect:/employees";
     }
 
     @GetMapping("/delete/{id}")
-    public String delete(@PathVariable("id") Integer id) {
+    public String deleteEmployee(@PathVariable("id") int id) {
         employeeService.deleteEmployee(id);
         return "redirect:/employees";
     }
